@@ -17,9 +17,9 @@ pipeline {
             steps {
                 echo 'testing code quality'
                sh "mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=position-similator \
+                    -Dsonar.projectKey=tracker \
                     -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=a4175588561511bc34c923bcd235a146f0f45372"
+                    -Dsonar.login=1002f5c56d276353b1e8a254e23872d5884996a8"
                 echo 'code quality test complete'
             }
         }
@@ -39,7 +39,6 @@ pipeline {
         stage ("image build") {
             steps {
                 echo 'building docker image'
-                sh 'docker login -u admin -p Admin123456 192.168.1.101:8082'
                 //sh "docker build -t veteron90/tracker:${commit_id} ." 
                 sh "docker build -t  192.168.1.101:8082/repository/tracker:${commit_id} ."
                 //sh "docker push veteron90/tracker:${commit_id} "
